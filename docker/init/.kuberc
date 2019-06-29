@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export KUBECONFIG="${HOME}/.kube/config"
+for file in ~/.kube/*; do
+    if [[ -f ${file} && $(basename ${file}) == *'-config'* ]]; then
+        export KUBECONFIG="${KUBECONFIG}:${file}"
+    fi
+done

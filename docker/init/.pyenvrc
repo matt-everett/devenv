@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export PYENV_ROOT="/root/.pyenv"
+export PATH="${PYENV_ROOT}/bin:${PATH}"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+PYENV_VIRTUALENV_DISABLE_PROMPT=1

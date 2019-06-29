@@ -1,0 +1,15 @@
+{
+    "kubectlVersion": "1.15.0",
+    "helmVersion": "2.14.1",
+    "globalPythonVersion": "3.7.3",
+    "microservices": [
+        {
+            "name": "server",
+            "pythonVersion": "3.7.3"
+        },
+        {
+            "name": "client",
+            "pythonVersion": "3.7.3"
+        }
+    ]
+}
