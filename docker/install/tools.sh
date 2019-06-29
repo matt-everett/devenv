@@ -1,7 +1,7 @@
 #!/bin/bash
 
-kubectlVersion=$(jq -r '.kubectlVersion' ~/install/config.json)
-helmVersion=$(jq -r '.helmVersion' ~/install/config.json)
+kubectlVersion=$(jq -r '.kubectlVersion' ${HOME}/install/config.json)
+helmVersion=$(jq -r '.helmVersion' ${HOME}/install/config.json)
 
 tempDir=$(mktemp -d)
 pushd ${tempDir}
@@ -17,8 +17,8 @@ mv ${tempDir}/linux-amd64/helm /usr/local/bin/helm
 popd
 rm -rf ${tempDir}
 
-echo '' >> ~/.bashrc
-echo 'source /etc/bash_completion' >> ~/.bashrc
-echo 'source ~/.kuberc' >> ~/.bashrc
-echo 'source <(kubectl completion bash)' >>~/.bashrc
-echo 'source <(helm completion bash)' >>~/.bashrc
+echo '' >> ${HOME}/.bashrc
+echo 'source /etc/bash_completion' >> ${HOME}/.bashrc
+echo 'source ${HOME}/.kuberc' >> ${HOME}/.bashrc
+echo 'source <(kubectl completion bash)' >> ${HOME}/.bashrc
+echo 'source <(helm completion bash)' >> ${HOME}/.bashrc

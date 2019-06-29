@@ -3,8 +3,8 @@
 while IFS=$'\t' read -r name src; do    
     pyenv activate ${name}
     
-    pip install -U -r "~/code/${src}/requirements.txt"
+    pip install -U -r "${HOME}/code/${src}/requirements.txt"
     
     pyenv deactivate
     echo "Sync'd requirements for for ${name}."
-done < <(jq -r '.microservices[] | [.name,.src] | @tsv' ~/install/config.json)
+done < <(jq -r '.microservices[] | [.name,.src] | @tsv' ${HOME}/install/config.json)

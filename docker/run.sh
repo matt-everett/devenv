@@ -1,7 +1,10 @@
 #!/bin/bash
 
+source ${HOME}/.pyenvrc
+
 echo "Syncing requirements..."
-sync-requirements
+# Needs to be sourced to alter environment variables
+source sync-requirements
 echo "Finished syncing requirements."
 
 echo "Starting sleep loop..."

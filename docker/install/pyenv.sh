@@ -2,9 +2,9 @@
 
 curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 
-echo '' >> ~/.bashrc
-echo 'source ~/.pyenvrc' >> ~/.bashrc
-source ~/.pyenvrc
+echo '' >> ${HOME}/.bashrc
+echo 'source ${HOME}/.pyenvrc' >> ${HOME}/.bashrc
+source ${HOME}/.pyenvrc
 
 function install_python_version () {
     pyenv install $1
@@ -35,9 +35,9 @@ while IFS=$'\t' read -r name version src; do
     
     pyenv deactivate
     echo "Created/initialised virtualenv for ${name} with version ${version}."
-done < <(jq -r '.microservices[] | [.name,.pythonVersion,.src] | @tsv' ~/install/config.json)
+done < <(jq -r '.microservices[] | [.name,.pythonVersion,.src] | @tsv' ${HOME}/install/config.json)
 
-globalVersion=$(jq -r '[.globalPythonVersion] | @tsv' ~/install/config.json)
+globalVersion=$(jq -r '[.globalPythonVersion] | @tsv' ${HOME}/install/config.json)
 if [ ! -z "${globalVersion}" ]; then
     if [ ! ${versions[${globalVersion}]+_} ]; then
         versions[${globalVersion}]="created"
