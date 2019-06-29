@@ -5,11 +5,13 @@
     "microservices": [
         {
             "name": "server",
-            "pythonVersion": "3.7.3"
+            "pythonVersion": "3.7.3",
+            "src": "server/src"
         },
         {
             "name": "client",
-            "pythonVersion": "3.7.3"
+            "pythonVersion": "3.7.3",
+            "src": "client/src"
         }
     ]
 }

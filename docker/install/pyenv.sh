@@ -12,8 +12,6 @@ function install_python_version () {
     pyenv local $1
     # Upgrade pip to latest to avoid warnings
     pip install --upgrade pip
-    # vscode needs pylint
-    pip install --upgrade pylint
     pyenv local --unset
 
     echo "Installed python version $1"
@@ -21,15 +19,23 @@ function install_python_version () {
 
 declare -A versions
 
-while IFS=$'\t' read -r name version; do
+while IFS=$'\t' read -r name version src; do
     if [ ! ${versions[${version}]+_} ]; then
         versions[${version}]="created"
         install_python_version ${version}
     fi
     
     pyenv virtualenv ${version} ${name}
-    echo "Created virtualenv for ${name} with version ${version}"
-done < <(jq -r '.microservices[] | [.name,.pythonVersion] | @tsv' ~/install/config.json)
+    pyenv activate ${name}
+
+    # Upgrade pip to latest to avoid warnings
+    pip install --upgrade pip
+    # vscode needs pylint
+    pip install --upgrade pylint
+    
+    pyenv deactivate
+    echo "Created/initialised virtualenv for ${name} with version ${version}."
+done < <(jq -r '.microservices[] | [.name,.pythonVersion,.src] | @tsv' ~/install/config.json)
 
 globalVersion=$(jq -r '[.globalPythonVersion] | @tsv' ~/install/config.json)
 if [ ! -z "${globalVersion}" ]; then
