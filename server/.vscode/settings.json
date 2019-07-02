@@ -1,5 +1,5 @@
 {
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
-    "python.pythonPath": "${env:HOME}/.pyenv/versions/server/bin/python"
+    "python.pythonPath": "${env:HOME}/.virtualenvs/server/bin/python"
 }
